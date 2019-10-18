@@ -51,6 +51,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
         <!--自己加的开始-->
         <dependency>
@@ -150,7 +158,7 @@
                 <!--自己加的开始-->
                 <!--这里写上main方法所在类的路径-->
                 <configuration>
-                    <mainClass>com.ex.project.ProjectApplication.java</mainClass>
+                    <mainClass>com.ex.project.ProjectApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
