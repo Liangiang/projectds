@@ -24,7 +24,7 @@ public class UserInfoController {
      * @Param [userInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/insert_user", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public int insert_user(@RequestBody UserInfo userInfo) {
         System.out.print(userInfo);
         int a = userInfoServiceImpl.insert_user(userInfo);
@@ -36,7 +36,7 @@ public class UserInfoController {
      * 2019/1/22
      */
     @ResponseBody
-    @RequestMapping(value = "/login_user", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Map login_user(@RequestBody UserInfo user) {
         Map returnData = userInfoServiceImpl.login_user(user);
         return returnData;
@@ -50,7 +50,7 @@ public class UserInfoController {
      * @Param [user]
      **/
     @ResponseBody
-    @RequestMapping(value = "/up_user", method = RequestMethod.POST)
+    @RequestMapping(value = "/up", method = RequestMethod.POST)
     public int up_user(@RequestBody UserInfo user) {
         int returnData = userInfoServiceImpl.up_user(user);
         return returnData;
@@ -64,7 +64,7 @@ public class UserInfoController {
      * @Param []
      **/
     @ResponseBody
-    @RequestMapping(value = "/sel_user", method = RequestMethod.POST)
+    @RequestMapping(value = "/sel", method = RequestMethod.POST)
     public UserInfo sel_user(@RequestBody UserInfo user) {
         UserInfo returnData = userInfoServiceImpl.sel_user(user);
         return returnData;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController("/shoppingcar")
+@RestController("/shoppingCar")
 public class ShoppingCarController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class ShoppingCarController {
      * @Param [shoppingCar]
      **/
     @ResponseBody
-    @RequestMapping(value = "/add_shopping", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public int add_shopping(@RequestBody ShoppingCarInfo shoppingCar) {
         System.out.print(shoppingCar);
         int returnData = shoppingCarServiceImpl.add_shopping(shoppingCar);
@@ -37,7 +37,7 @@ public class ShoppingCarController {
      * @Param [shoppingCar]
      **/
     @ResponseBody
-    @RequestMapping(value = "/del_shopping", method = RequestMethod.POST)
+    @RequestMapping(value = "/del", method = RequestMethod.POST)
     public int del_shopping(@RequestBody ShoppingCarInfo shoppingCar) {
         System.out.print(shoppingCar);
         int returnData = shoppingCarServiceImpl.del_shopping(shoppingCar);
@@ -52,7 +52,7 @@ public class ShoppingCarController {
      * @Param
      **/
     @ResponseBody
-    @RequestMapping(value = "/up_shopping", method = RequestMethod.POST)
+    @RequestMapping(value = "/up", method = RequestMethod.POST)
     public int up_shopping(@RequestBody ShoppingCarInfo shoppingCar) {
         System.out.print(shoppingCar);
         int returnData = shoppingCarServiceImpl.up_shopping(shoppingCar);
@@ -67,7 +67,7 @@ public class ShoppingCarController {
      * @Param []
      **/
     @ResponseBody
-    @RequestMapping(value = "/sel_shopping", method = RequestMethod.POST)
+    @RequestMapping(value = "/sel", method = RequestMethod.POST)
     public PageInfo<ShoppingCarInfo> sel_shopping(@RequestBody Map map) {
         PageInfo<ShoppingCarInfo> returnData = shoppingCarServiceImpl.sel_shopping(map);
         return returnData;

@@ -21,7 +21,7 @@ public class ManagerInfoController {
      * @return java.util.Map
      **/
     @ResponseBody
-    @RequestMapping(value = "/login_manager", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Map login_manager(@RequestBody ManagerInfo managerInfo) {
         Map returnData = managerInfoService.login_manager(managerInfo);
         return returnData;

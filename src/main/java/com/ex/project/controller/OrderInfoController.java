@@ -20,7 +20,7 @@ public class OrderInfoController {
      * @Param [orderInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/add_order", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public int add_order(@RequestBody OrderInfo orderInfo) {
         int returnData = orderInfoService.add_order(orderInfo);
         return returnData;
@@ -34,7 +34,7 @@ public class OrderInfoController {
      * @Param [orderInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/up_order", method = RequestMethod.POST)
+    @RequestMapping(value = "/up", method = RequestMethod.POST)
     public int up_order(@RequestBody OrderInfo orderInfo) {
         int returnData = orderInfoService.up_order(orderInfo);
         return returnData;
@@ -48,7 +48,7 @@ public class OrderInfoController {
      * @Param [orderInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/sel_a_order", method = RequestMethod.POST)
+    @RequestMapping(value = "/selA", method = RequestMethod.POST)
     public OrderInfo sel_a_order(@RequestBody OrderInfo orderInfo) {
         OrderInfo returnData = orderInfoService.sel_a_order(orderInfo);
         return returnData;
@@ -62,7 +62,7 @@ public class OrderInfoController {
      * @Param [orderInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/sel_all_order", method = RequestMethod.POST)
+    @RequestMapping(value = "/selAll", method = RequestMethod.POST)
     public PageInfo<OrderInfo> sel_all_order(@RequestBody OrderInfo orderInfo) {
         PageInfo<OrderInfo> returnData = orderInfoService.sel_all_order(orderInfo);
         return returnData;

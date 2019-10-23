@@ -21,7 +21,7 @@ public class ShopInfoController {
      * @Param [shopInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/login_shop", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Map login_shop(@RequestBody ShopInfo shopInfo) {
         Map returnData = shopInfoService.login_shop(shopInfo);
         return returnData;
@@ -35,7 +35,7 @@ public class ShopInfoController {
      * @Param [shopInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/add_shop", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public int add_shop(@RequestBody ShopInfo shopInfo) {
         int returnData = shopInfoService.add_shop(shopInfo);
         return returnData;
@@ -49,7 +49,7 @@ public class ShopInfoController {
      * @Param [shopInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/up_shop", method = RequestMethod.POST)
+    @RequestMapping(value = "/up", method = RequestMethod.POST)
     public int up_shop(@RequestBody ShopInfo shopInfo) {
         int returnData = shopInfoService.up_shop(shopInfo);
         return returnData;
@@ -63,7 +63,7 @@ public class ShopInfoController {
      * @Param [shopInfo]
      **/
     @ResponseBody
-    @RequestMapping(value = "/sel_shop", method = RequestMethod.POST)
+    @RequestMapping(value = "/sel", method = RequestMethod.POST)
     public ShopInfo sel_shop(@RequestBody ShopInfo shopInfo) {
         ShopInfo returnData = shopInfoService.sel_shop(shopInfo);
         return returnData;
