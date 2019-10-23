@@ -1,6 +1,7 @@
 package com.ex.project.model;
 
 public class UserInfo {
+
     private Integer id;
 
     private String nickName;

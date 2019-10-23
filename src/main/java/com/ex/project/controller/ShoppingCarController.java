@@ -4,11 +4,12 @@ import com.ex.project.model.ShoppingCarInfo;
 import com.ex.project.service.ShoppingCarService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-
-@RestController("/shoppingCar")
+@Controller
+@RequestMapping("/shoppingCar")
 public class ShoppingCarController {
 
     @Autowired

@@ -61,11 +61,11 @@
         </dependency>
 
         <!--自己加的开始-->
-        <!--<dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>-->
+        </dependency>
         <!--EasyPoi导入导出-->
         <dependency>
             <groupId>cn.afterturn</groupId>

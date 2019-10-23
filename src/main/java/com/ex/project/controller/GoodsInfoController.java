@@ -4,21 +4,23 @@ import com.ex.project.model.GoodsInfo;
 import com.ex.project.service.GoodsInfoService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/goods")
+@Controller
+@RequestMapping("/goods")
 public class GoodsInfoController {
 
     @Autowired
     private GoodsInfoService goodsInfoServiceImpl;
 
-/**
- * @Author lx
- * @Description  查看所有已上架的商品or查看本店铺所有商品
- * @Date 16:35 2019/10/23
- * @Param [goodsInfo]
- * @return com.github.pagehelper.PageInfo<com.ex.project.model.GoodsInfo>
- **/
+    /**
+     * @return com.github.pagehelper.PageInfo<com.ex.project.model.GoodsInfo>
+     * @Author lx
+     * @Description 查看所有已上架的商品or查看本店铺所有商品
+     * @Date 16:35 2019/10/23
+     * @Param [goodsInfo]
+     **/
     @ResponseBody
     @RequestMapping(value = "/selGoodsBy", method = RequestMethod.POST)
     public PageInfo<GoodsInfo> selGoodsBy(@RequestBody GoodsInfo goodsInfo) {

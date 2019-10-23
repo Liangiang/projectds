@@ -4,12 +4,13 @@ import com.ex.project.model.UserInfo;
 import com.ex.project.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.Map;
-
-@RestController("/user")
+@Controller
+@RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class UserInfoController {
 
