@@ -7,40 +7,47 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="age" jdbcType="INTEGER" property="age"/>
-        <result column="sex" jdbcType="CHAR" property="sex"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
         <result column="phone" jdbcType="CHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="money" jdbcType="DOUBLE" property="money"/>
         <result column="flag" jdbcType="INTEGER" property="flag"/>
-        <result column="managerId" jdbcType="INTEGER" property="managerId"/>
-        <result column="insertTime" jdbcType="TIMESTAMP" property="inserttime"/>
+        <result column="m_id" jdbcType="INTEGER" property="mId"/>
     </resultMap>
     <sql id="Base_Column_List">
-      id,nick_name AS nickName, name, password, age, sex, phone, email, address, money, flag, managerId, insertTime
-    </sql>
+    id, nick_name, name, password, age, sex, phone, email, address, money, flag, m_id
+  </sql>
     <!--denglu-->
-    <select id="loginUser" resultType="com.ex.project.model.UserInfo" parameterType="com.ex.project.model.UserInfo">
+    <select id="loginUser" resultType="com.ex.project.model.UserInfo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from userinfo
+        from u_userinfo
         where phone = #{phone}
     </select>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from userinfo
+        from u_userinfo
         where id = #{id,jdbcType=INTEGER}
     </select>
-
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from userinfo
-        where id = #{id,jdbcType=INTEGER}
-    </delete>
-
+    delete from u_userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.ex.project.model.UserInfo">
+    insert into u_userinfo (id, nick_name, name,
+      password, age, sex,
+      phone, email, address,
+      money, flag, m_id)
+    values (#{id,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER},
+      #{phone,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      #{money,jdbcType=DOUBLE}, #{flag,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER})
+  </insert>
     <insert id="insertSelective" parameterType="com.ex.project.model.UserInfo">
-        insert into userinfo
+        insert into u_userinfo
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -75,11 +82,8 @@
             <if test="flag != null">
                 flag,
             </if>
-            <if test="managerid != null">
-                managerId,
-            </if>
-            <if test="inserttime != null">
-                insertTime,
+            <if test="mId != null">
+                m_id,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -99,7 +103,7 @@
                 #{age,jdbcType=INTEGER},
             </if>
             <if test="sex != null">
-                #{sex,jdbcType=CHAR},
+                #{sex,jdbcType=INTEGER},
             </if>
             <if test="phone != null">
                 #{phone,jdbcType=CHAR},
@@ -116,20 +120,16 @@
             <if test="flag != null">
                 #{flag,jdbcType=INTEGER},
             </if>
-            <if test="managerid != null">
-                #{managerid,jdbcType=INTEGER},
-            </if>
-            <if test="inserttime != null">
-                #{inserttime,jdbcType=TIMESTAMP},
+            <if test="mId != null">
+                #{mId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
-
     <update id="updateByPrimaryKeySelective" parameterType="com.ex.project.model.UserInfo">
-        update userinfo
+        update u_userinfo
         <set>
             <if test="nickName != null">
-                nick_name=#{nickName},
+                nick_name = #{nickName,jdbcType=VARCHAR},
             </if>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
@@ -141,7 +141,7 @@
                 age = #{age,jdbcType=INTEGER},
             </if>
             <if test="sex != null">
-                sex = #{sex,jdbcType=CHAR},
+                sex = #{sex,jdbcType=INTEGER},
             </if>
             <if test="phone != null">
                 phone = #{phone,jdbcType=CHAR},
@@ -158,14 +158,27 @@
             <if test="flag != null">
                 flag = #{flag,jdbcType=INTEGER},
             </if>
-            <if test="managerid != null">
-                managerId = #{managerid,jdbcType=INTEGER},
-            </if>
-            <if test="inserttime != null">
-                insertTime = #{inserttime,jdbcType=TIMESTAMP},
+            <if test="mId != null">
+                m_id = #{mId,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+    <update id="updateByPrimaryKey" parameterType="com.ex.project.model.UserInfo">
+    update u_userinfo
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=INTEGER},
+      m_id = #{mId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
 
 </mapper>

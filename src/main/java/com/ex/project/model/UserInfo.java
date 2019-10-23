@@ -1,10 +1,5 @@
 package com.ex.project.model;
 
-import lombok.Data;
-
-import java.util.Date;
-
-@Data
 public class UserInfo {
     private Integer id;
 
@@ -16,7 +11,7 @@ public class UserInfo {
 
     private Integer age;
 
-    private String sex;
+    private Integer sex;
 
     private String phone;
 
@@ -28,9 +23,7 @@ public class UserInfo {
 
     private Integer flag;
 
-    private Integer managerId;
-
-    private Date inserttime;
+    private Integer mId;
 
     public Integer getId() {
         return id;
@@ -38,6 +31,14 @@ public class UserInfo {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName == null ? null : nickName.trim();
     }
 
     public String getName() {
@@ -64,12 +65,12 @@ public class UserInfo {
         this.age = age;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
     public String getPhone() {
@@ -112,20 +113,11 @@ public class UserInfo {
         this.flag = flag;
     }
 
-
-    public Date getInserttime() {
-        return inserttime;
+    public Integer getmId() {
+        return mId;
     }
 
-    public void setInserttime(Date inserttime) {
-        this.inserttime = inserttime;
-    }
-
-    public Integer getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(Integer managerId) {
-        this.managerId = managerId;
+    public void setmId(Integer mId) {
+        this.mId = mId;
     }
 }

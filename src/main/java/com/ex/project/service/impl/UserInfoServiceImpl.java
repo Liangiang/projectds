@@ -14,6 +14,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private UserInfoMapper userInfoMapper;
 
+    @Override
+    public int insert_user(UserInfo userInfo) {
+        int returnData = userInfoMapper.insertSelective(userInfo);
+        return returnData;
+    }
+
     /**
      * @return java.util.Map
      * @Author lx
@@ -42,5 +48,11 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         return null;
 
+    }
+
+    @Override
+    public int up_user(UserInfo userInfo) {
+        int returnData = userInfoMapper.updateByPrimaryKeySelective(userInfo);
+        return returnData;
     }
 }
