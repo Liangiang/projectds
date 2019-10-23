@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ex.project.mapper.HealthArticleMapper">
+  <resultMap id="BaseResultMap" type="com.ex.project.model.HealthArticle">
+    <id column="h_id" jdbcType="INTEGER" property="hId" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="m_id" jdbcType="INTEGER" property="mId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ex.project.model.HealthArticle">
+    <result column="context" jdbcType="LONGVARCHAR" property="context" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    h_id, insert_time, m_id
+  </sql>
+  <sql id="Blob_Column_List">
+    context
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from health_article
+    where h_id = #{hId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from health_article
+    where h_id = #{hId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ex.project.model.HealthArticle">
+    insert into health_article (h_id, insert_time, m_id, 
+      context)
+    values (#{hId,jdbcType=INTEGER}, #{insertTime,jdbcType=TIMESTAMP}, #{mId,jdbcType=INTEGER}, 
+      #{context,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ex.project.model.HealthArticle">
+    insert into health_article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hId != null">
+        h_id,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hId != null">
+        #{hId,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ex.project.model.HealthArticle">
+    update health_article
+    <set>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where h_id = #{hId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ex.project.model.HealthArticle">
+    update health_article
+    set insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      m_id = #{mId,jdbcType=INTEGER},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where h_id = #{hId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ex.project.model.HealthArticle">
+    update health_article
+    set insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      m_id = #{mId,jdbcType=INTEGER}
+    where h_id = #{hId,jdbcType=INTEGER}
+  </update>
+</mapper>

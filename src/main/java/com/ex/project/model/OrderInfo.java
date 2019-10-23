@@ -1,5 +1,7 @@
 package com.ex.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -20,8 +22,8 @@ public class OrderInfo {
 
     private Integer oNum;
 
-    private BigDecimal countPrice;
-
+    private Double countPrice;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date oTime;
     /**
      * @Description 0下订单，1付款，2取消订单，3发货，4收货，5申请退货，6同意退货，7拒绝退货
@@ -38,19 +40,27 @@ public class OrderInfo {
 
     private String sReseason;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date payTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date passPayTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date sSendIme;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date uGetTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date uApplyRegoodsTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date sAgreeRegoodsTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date sRefuseRegoodsIme;
+
     //+++++
     private Integer currentPage;
 
@@ -121,13 +131,6 @@ public class OrderInfo {
         this.oNum = oNum;
     }
 
-    public BigDecimal getCountPrice() {
-        return countPrice;
-    }
-
-    public void setCountPrice(BigDecimal countPrice) {
-        this.countPrice = countPrice;
-    }
 
     public Date getoTime() {
         return oTime;
@@ -255,5 +258,13 @@ public class OrderInfo {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public Double getCountPrice() {
+        return countPrice;
+    }
+
+    public void setCountPrice(Double countPrice) {
+        this.countPrice = countPrice;
     }
 }

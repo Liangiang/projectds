@@ -1,5 +1,7 @@
 package com.ex.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class GoodsInfo {
@@ -30,7 +32,7 @@ public class GoodsInfo {
     private String gShelfLife;
 
     private Integer downFlag;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date publishTime;
 
     private Integer currentPage;
