@@ -35,10 +35,11 @@ public class GoodsInfo {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date publishTime;
 
+    //+++++++++
     private Integer currentPage;
 
     private Integer pageSize;
-
+    //++++++++++++++
 
     public Integer getgId() {
         return gId;

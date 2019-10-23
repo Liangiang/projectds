@@ -38,7 +38,7 @@
                 s_id=#{sId}
             </if>
             <if test="downFlag!=null">
-                down_flag=#{downFlag}
+               AND down_flag=#{downFlag}
             </if>
         </where>
         <if test="sId!=null">

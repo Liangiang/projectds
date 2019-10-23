@@ -47,7 +47,7 @@
                 s_id=#{sId}
             </if>
             <if test="uId!=null">
-                u_id=#{uId}
+               and u_id=#{uId}
             </if>
         </where>
         order by
