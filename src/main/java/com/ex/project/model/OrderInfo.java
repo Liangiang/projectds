@@ -23,7 +23,9 @@ public class OrderInfo {
     private BigDecimal countPrice;
 
     private Date oTime;
-
+    /**
+     * @Description 0下订单，1付款，2取消订单，3发货，4收货，5申请退货，6同意退货，7拒绝退货
+     **/
     private Integer oStatus;
 
     private String getUName;
@@ -49,6 +51,11 @@ public class OrderInfo {
     private Date sAgreeRegoodsTime;
 
     private Date sRefuseRegoodsIme;
+    //+++++
+    private Integer currentPage;
+
+    private Integer pageSize;
+    //++++++-end
 
     public Integer getoId() {
         return oId;
@@ -232,5 +239,21 @@ public class OrderInfo {
 
     public void setsRefuseRegoodsIme(Date sRefuseRegoodsIme) {
         this.sRefuseRegoodsIme = sRefuseRegoodsIme;
+    }
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }

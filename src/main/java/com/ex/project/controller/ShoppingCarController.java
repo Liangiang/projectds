@@ -15,9 +15,12 @@ public class ShoppingCarController {
     private ShoppingCarService shoppingCarServiceImpl;
 
     /**
-     * 测试
-     * 增
-     */
+     * @return int
+     * @Author lx
+     * @Description 加入购物车（增）
+     * @Date 17:17 2019/10/23
+     * @Param [shoppingCar]
+     **/
     @ResponseBody
     @RequestMapping(value = "/add_shopping", method = RequestMethod.POST)
     public int add_shopping(@RequestBody ShoppingCarInfo shoppingCar) {

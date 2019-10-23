@@ -20,7 +20,16 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
 
     @Override
     public int add_shopping(ShoppingCarInfo shoppingCar) {
-        int returnData = shoppingCarInfoMapper.insertSelective(shoppingCar);
+        int returnData = 0;
+        ShoppingCarInfo re = shoppingCarInfoMapper.selectByGId(shoppingCar);
+        //之前是否加过购物车
+        if (re != null) {
+            int shopnum = shoppingCar.getPurchaseNum();
+            shoppingCar.setPurchaseNum(shopnum + re.getPurchaseNum());
+            returnData = shoppingCarInfoMapper.updateByPrimaryKeySelective(shoppingCar);
+        } else {
+            returnData = shoppingCarInfoMapper.insertSelective(shoppingCar);
+        }
         return returnData;
     }
 

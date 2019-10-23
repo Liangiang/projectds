@@ -11,6 +11,8 @@ public interface ShoppingCarInfoMapper {
 
     int insertSelective(ShoppingCarInfo record);
 
+    ShoppingCarInfo selectByGId(ShoppingCarInfo record);
+
     ShoppingCarInfo selectByPrimaryKey(Integer id);
 
     List<ShoppingCarInfo> selectByUId();

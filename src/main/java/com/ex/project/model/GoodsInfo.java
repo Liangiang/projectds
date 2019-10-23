@@ -33,6 +33,11 @@ public class GoodsInfo {
 
     private Date publishTime;
 
+    private Integer currentPage;
+
+    private Integer pageSize;
+
+
     public Integer getgId() {
         return gId;
     }
@@ -151,5 +156,21 @@ public class GoodsInfo {
 
     public void setPublishTime(Date publishTime) {
         this.publishTime = publishTime;
+    }
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }
