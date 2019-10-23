@@ -46,13 +46,19 @@ public class UserInfoServiceImpl implements UserInfoService {
             //404-没用户
             returndata.put("flag", 404);
         }
-        return null;
+        return returndata;
 
     }
 
     @Override
     public int up_user(UserInfo userInfo) {
         int returnData = userInfoMapper.updateByPrimaryKeySelective(userInfo);
+        return returnData;
+    }
+
+    @Override
+    public UserInfo sel_user(UserInfo userInfo) {
+        UserInfo returnData = userInfoMapper.selectByPrimaryKey(userInfo.getId());
         return returnData;
     }
 }

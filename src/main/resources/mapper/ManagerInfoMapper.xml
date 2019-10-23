@@ -1,78 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ex.project.mapper.ManagerInfoMapper">
-  <resultMap id="BaseResultMap" type="com.ex.project.model.ManagerInfo">
-    <id column="m_id" jdbcType="INTEGER" property="mId" />
-    <result column="m_name" jdbcType="VARCHAR" property="mName" />
-    <result column="m_phone" jdbcType="VARCHAR" property="mPhone" />
-    <result column="m_password" jdbcType="VARCHAR" property="mPassword" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.ex.project.model.ManagerInfo">
+        <id column="m_id" jdbcType="INTEGER" property="mId"/>
+        <result column="m_name" jdbcType="VARCHAR" property="mName"/>
+        <result column="m_phone" jdbcType="VARCHAR" property="mPhone"/>
+        <result column="m_password" jdbcType="VARCHAR" property="mPassword"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     m_id, m_name, m_phone, m_password
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from m_managerinfo
-    where m_id = #{mId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from m_managerinfo
+        where m_id = #{mId,jdbcType=INTEGER}
+    </select>
+    <!--denglu-->
+    <select id="loginMan" parameterType="com.ex.project.model.ManagerInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from m_managerinfo
+        where m_phone = #{mPhone}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from m_managerinfo
     where m_id = #{mId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ex.project.model.ManagerInfo">
+    <insert id="insert" parameterType="com.ex.project.model.ManagerInfo">
     insert into m_managerinfo (m_id, m_name, m_phone, 
       m_password)
     values (#{mId,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR}, #{mPhone,jdbcType=VARCHAR}, 
       #{mPassword,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ex.project.model.ManagerInfo">
-    insert into m_managerinfo
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="mId != null">
-        m_id,
-      </if>
-      <if test="mName != null">
-        m_name,
-      </if>
-      <if test="mPhone != null">
-        m_phone,
-      </if>
-      <if test="mPassword != null">
-        m_password,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="mId != null">
-        #{mId,jdbcType=INTEGER},
-      </if>
-      <if test="mName != null">
-        #{mName,jdbcType=VARCHAR},
-      </if>
-      <if test="mPhone != null">
-        #{mPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="mPassword != null">
-        #{mPassword,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ex.project.model.ManagerInfo">
-    update m_managerinfo
-    <set>
-      <if test="mName != null">
-        m_name = #{mName,jdbcType=VARCHAR},
-      </if>
-      <if test="mPhone != null">
-        m_phone = #{mPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="mPassword != null">
-        m_password = #{mPassword,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where m_id = #{mId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ex.project.model.ManagerInfo">
+    <insert id="insertSelective" parameterType="com.ex.project.model.ManagerInfo">
+        insert into m_managerinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mId != null">
+                m_id,
+            </if>
+            <if test="mName != null">
+                m_name,
+            </if>
+            <if test="mPhone != null">
+                m_phone,
+            </if>
+            <if test="mPassword != null">
+                m_password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mId != null">
+                #{mId,jdbcType=INTEGER},
+            </if>
+            <if test="mName != null">
+                #{mName,jdbcType=VARCHAR},
+            </if>
+            <if test="mPhone != null">
+                #{mPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="mPassword != null">
+                #{mPassword,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ex.project.model.ManagerInfo">
+        update m_managerinfo
+        <set>
+            <if test="mName != null">
+                m_name = #{mName,jdbcType=VARCHAR},
+            </if>
+            <if test="mPhone != null">
+                m_phone = #{mPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="mPassword != null">
+                m_password = #{mPassword,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where m_id = #{mId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ex.project.model.ManagerInfo">
     update m_managerinfo
     set m_name = #{mName,jdbcType=VARCHAR},
       m_phone = #{mPhone,jdbcType=VARCHAR},

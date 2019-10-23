@@ -11,4 +11,6 @@ public interface UserInfoService {
     Map login_user(UserInfo userInfo);
 
     int up_user(UserInfo userInfo);
+
+    UserInfo sel_user(UserInfo userInfo);
 }
