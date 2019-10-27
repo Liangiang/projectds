@@ -2,6 +2,7 @@ package com.ex.project.service;
 
 import com.ex.project.model.ShoppingCarInfo;
 
+import com.ex.project.model.ShoppingCarInfoVO;
 import com.github.pagehelper.PageInfo;
 
 import java.util.Map;
@@ -14,5 +15,5 @@ public interface ShoppingCarService {
 
     int up_shopping(ShoppingCarInfo shoppingCar);
 
-    PageInfo<ShoppingCarInfo> sel_shopping(Map map);
+    PageInfo<ShoppingCarInfoVO> sel_shopping(Map map);
 }

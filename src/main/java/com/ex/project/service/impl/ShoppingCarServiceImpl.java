@@ -3,6 +3,7 @@ package com.ex.project.service.impl;
 import com.ex.project.mapper.ShopInfoMapper;
 import com.ex.project.mapper.ShoppingCarInfoMapper;
 import com.ex.project.model.ShoppingCarInfo;
+import com.ex.project.model.ShoppingCarInfoVO;
 import com.ex.project.service.ShoppingCarService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -26,6 +27,7 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
         if (re != null) {
             int shopnum = shoppingCar.getPurchaseNum();
             shoppingCar.setPurchaseNum(shopnum + re.getPurchaseNum());
+            shoppingCar.setId(re.getId());
             returnData = shoppingCarInfoMapper.updateByPrimaryKeySelective(shoppingCar);
         } else {
             returnData = shoppingCarInfoMapper.insertSelective(shoppingCar);
@@ -46,10 +48,10 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     }
 
     @Override
-    public PageInfo<ShoppingCarInfo> sel_shopping(Map remap) {
-        List<ShoppingCarInfo> returnData = shoppingCarInfoMapper.selectByUId();
+    public PageInfo<ShoppingCarInfoVO> sel_shopping(Map remap) {
+        List<ShoppingCarInfoVO> returnData = shoppingCarInfoMapper.selectByUId(Integer.parseInt(remap.get("uId").toString()));
         PageHelper.startPage(Integer.parseInt(remap.get("currentPage").toString()), Integer.parseInt(remap.get("pageSize").toString()));
-        PageInfo<ShoppingCarInfo> a = new PageInfo<ShoppingCarInfo>(returnData);
+        PageInfo<ShoppingCarInfoVO> a = new PageInfo<ShoppingCarInfoVO>(returnData);
         return a;
     }
 

@@ -1,6 +1,7 @@
 package com.ex.project.controller;
 
 import com.ex.project.model.ShoppingCarInfo;
+import com.ex.project.model.ShoppingCarInfoVO;
 import com.ex.project.service.ShoppingCarService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+
 @Controller
 @RequestMapping("/shoppingCar")
 public class ShoppingCarController {
@@ -68,9 +70,9 @@ public class ShoppingCarController {
      * @Param []
      **/
     @ResponseBody
-    @RequestMapping(value = "/sel", method = RequestMethod.POST)
-    public PageInfo<ShoppingCarInfo> sel_shopping(@RequestBody Map map) {
-        PageInfo<ShoppingCarInfo> returnData = shoppingCarServiceImpl.sel_shopping(map);
+    @RequestMapping(value = "/selAll", method = RequestMethod.POST)
+    public PageInfo<ShoppingCarInfoVO> sel_shopping(@RequestBody Map map) {
+        PageInfo<ShoppingCarInfoVO> returnData = shoppingCarServiceImpl.sel_shopping(map);
         return returnData;
     }
 }

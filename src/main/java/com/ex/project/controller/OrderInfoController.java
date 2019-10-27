@@ -27,6 +27,12 @@ public class OrderInfoController {
         return returnData;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/del", method = RequestMethod.POST)
+    public int del_order(@RequestBody OrderInfo orderInfo) {
+        int returnData = orderInfoService.del_order(orderInfo);
+        return returnData;
+    }
     /**
      * @return int
      * @Author lx

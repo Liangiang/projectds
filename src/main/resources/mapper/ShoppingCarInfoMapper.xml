@@ -15,37 +15,37 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from shoppingcarinfo
+        from sh_shoppingcarinfo
         where id = #{id,jdbcType=INTEGER}
     </select>
     <!--该用户的所有购物车信息-->
-    <select id="selectByUId" resultMap="BaseResultMap">
+    <select id="selectByUId" resultType="com.ex.project.model.ShoppingCarInfoVO" parameterType="java.lang.Integer">
         select
         a.id as id, a.g_id as gId, a.purchase_num as purchaseNum,  b.g_name as gName, b.g_stock as gStock, b.price, b.type_name as typeName, b.img_url as imgUrl
-        from shoppingcarinfo a,
+        from sh_shoppingcarinfo a,
         g_goodsinfo b
         where a.g_id=b.g_id
-        u_id = #{uId}
+       and  u_id = #{uId}
     </select>
     <!--判断是否已经加过购物车-->
     <select id="selectByGId" parameterType="com.ex.project.model.ShoppingCarInfo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from shoppingcarinfo
+        from sh_shoppingcarinfo
         where g_id = #{gId}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from shoppingcarinfo
+    delete from sh_shoppingcarinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.ex.project.model.ShoppingCarInfo">
-    insert into shoppingcarinfo (id, g_id, u_id, 
+    insert into sh_shoppingcarinfo (id, g_id, u_id,
       purchase_num, insert_time)
     values (#{id,jdbcType=INTEGER}, #{gId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, 
       #{purchaseNum,jdbcType=INTEGER}, #{insertTime,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="com.ex.project.model.ShoppingCarInfo">
-        insert into shoppingcarinfo
+        insert into sh_shoppingcarinfo
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -82,25 +82,18 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.ex.project.model.ShoppingCarInfo">
-        update shoppingcarinfo
+        update sh_shoppingcarinfo
         <set>
-            <if test="gId != null">
-                g_id = #{gId,jdbcType=INTEGER},
-            </if>
-            <if test="uId != null">
-                u_id = #{uId,jdbcType=INTEGER},
-            </if>
+
             <if test="purchaseNum != null">
                 purchase_num = #{purchaseNum,jdbcType=INTEGER},
             </if>
-            <if test="insertTime != null">
-                insert_time = #{insertTime,jdbcType=TIMESTAMP},
-            </if>
+
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ex.project.model.ShoppingCarInfo">
-    update shoppingcarinfo
+    update sh_shoppingcarinfo
     set g_id = #{gId,jdbcType=INTEGER},
       u_id = #{uId,jdbcType=INTEGER},
       purchase_num = #{purchaseNum,jdbcType=INTEGER},

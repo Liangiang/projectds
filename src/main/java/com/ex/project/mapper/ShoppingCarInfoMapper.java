@@ -1,6 +1,8 @@
 package com.ex.project.mapper;
 
 import com.ex.project.model.ShoppingCarInfo;
+import com.ex.project.model.ShoppingCarInfoVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ public interface ShoppingCarInfoMapper {
 
     ShoppingCarInfo selectByPrimaryKey(Integer id);
 
-    List<ShoppingCarInfo> selectByUId();
+    List<ShoppingCarInfoVO> selectByUId(@Param("uId") Integer uId);
 
     int updateByPrimaryKeySelective(ShoppingCarInfo record);
 

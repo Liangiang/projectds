@@ -23,6 +23,12 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     }
 
     @Override
+    public int del_order(OrderInfo orderInfo) {
+        int returnData = orderInfoMapper.deleteByPrimaryKey(orderInfo.getoId());
+        return returnData;
+    }
+
+    @Override
     public int up_order(OrderInfo orderInfo) {
         int returnData = orderInfoMapper.updateByPrimaryKeySelective(orderInfo);
         return returnData;

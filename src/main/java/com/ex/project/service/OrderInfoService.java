@@ -7,6 +7,8 @@ public interface OrderInfoService {
 
     int add_order(OrderInfo orderInfo);
 
+    int del_order(OrderInfo orderInfo);
+
     int up_order(OrderInfo orderInfo);
 
     OrderInfo sel_a_order(OrderInfo orderInfo);
