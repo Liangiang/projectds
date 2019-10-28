@@ -22,7 +22,7 @@ public class ShopInfoServiceImpl implements ShopInfoService {
             if (reshop.getsPassword().equals(shopInfo.getsPassword())) {
                 //1是登录成功
                 returndata.put("flag", 1);
-                returndata.put("nickName", "");
+                returndata.put("nickName", reshop.getsName());
                 returndata.put("realName", reshop.getsHeadName());
                 returndata.put("userId", reshop.getsId());
             } else {
