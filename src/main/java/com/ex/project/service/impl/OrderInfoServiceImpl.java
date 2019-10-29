@@ -1,6 +1,8 @@
 package com.ex.project.service.impl;
 
+import com.ex.project.mapper.GoodsInfoMapper;
 import com.ex.project.mapper.OrderInfoMapper;
+import com.ex.project.model.GoodsInfo;
 import com.ex.project.model.OrderInfo;
 import com.ex.project.service.OrderInfoService;
 import com.github.pagehelper.PageHelper;
@@ -15,9 +17,13 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
     @Resource
     private OrderInfoMapper orderInfoMapper;
+    @Resource
+    private GoodsInfoMapper goodsInfoMapper;
 
     @Override
     public int add_order(OrderInfo orderInfo) {
+        GoodsInfo g = goodsInfoMapper.selectByPrimaryKey(orderInfo.getgId());
+        orderInfo.setsId(g.getsId());
         int returnData = orderInfoMapper.insertSelective(orderInfo);
         return returnData;
     }

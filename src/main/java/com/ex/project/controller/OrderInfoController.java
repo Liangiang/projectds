@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 @Controller
 @RequestMapping("/order")
 public class OrderInfoController {
@@ -27,12 +28,20 @@ public class OrderInfoController {
         return returnData;
     }
 
+    /**
+     * @return int
+     * @Author lx
+     * @Description 删
+     * @Date 20:49 2019/10/29
+     * @Param [orderInfo]
+     **/
     @ResponseBody
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     public int del_order(@RequestBody OrderInfo orderInfo) {
         int returnData = orderInfoService.del_order(orderInfo);
         return returnData;
     }
+
     /**
      * @return int
      * @Author lx

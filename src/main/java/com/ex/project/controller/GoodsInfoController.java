@@ -6,6 +6,13 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/goods")
@@ -40,6 +47,45 @@ public class GoodsInfoController {
     public int add_goods(@RequestBody GoodsInfo goodsInfo) {
         int returnData = goodsInfoServiceImpl.add_goods(goodsInfo);
         return returnData;
+    }
+
+    /**
+     * @return java.util.Map<java.lang.String                                                               ,                                                               java.lang.Object>
+     * @Author lx
+     * @Description 上传主图
+     * @Date 20:33 2019/10/29
+     * @Param [file]
+     **/
+    @RequestMapping(value = "/saveImage", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> upload(@RequestBody MultipartFile file) throws Exception {
+        Map<String, Object> resultMap = new HashMap<>();
+        try {
+            // 文件名
+            String fileName = file.getOriginalFilename();
+            // 后缀名
+            String suffixName = fileName.substring(fileName.lastIndexOf("."));
+            // 上传后的路径
+            String filePath = "E:/Ahtah/CompanySvn/bishe/bisheUI/static/img/goodsImg/";
+            // 新文件名
+            fileName = UUID.randomUUID() + suffixName;
+            File dest = new File(filePath + fileName);
+            if (!dest.getParentFile().exists()) {
+                dest.getParentFile().mkdirs();
+            }
+            //保存方法
+            file.transferTo(dest);
+
+            resultMap.put("filePath", "/static/img/goodsImg/" + fileName);
+            resultMap.put("code", 200);
+            resultMap.put("message", "上传成功");
+            resultMap.put("upTime", new Date());
+        } catch (Exception e) {
+            resultMap.put("status", 500);
+            resultMap.put("message", "上传异常！");
+        }
+
+        return resultMap;
     }
 
     /**

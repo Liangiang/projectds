@@ -30,8 +30,10 @@ public class GoodsInfo {
     private String gNorm;
 
     private String gShelfLife;
+
     //0-未上架，1已上架
     private Integer downFlag;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date publishTime;
 
