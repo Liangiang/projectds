@@ -34,6 +34,7 @@
                 m_id=#{mId}
             </if>
         </where>
+        order by insert_time desc
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from health_article
@@ -68,7 +69,7 @@
                 #{title},
             </if>
             <if test="context != null">
-                #{context,jdbcType=LONGVARCHAR},
+                #{context},
             </if>
         </trim>
     </insert>

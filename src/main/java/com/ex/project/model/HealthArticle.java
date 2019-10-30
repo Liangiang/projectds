@@ -15,6 +15,7 @@ public class HealthArticle {
 
     private String title;
 
+
     private String context;
 
     private Integer currentPage;
