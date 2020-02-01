@@ -8,7 +8,7 @@ public class HealthArticle {
 
     private Integer hId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:SS", timezone = "GMT+8")
     private Date insertTime;
 
     private Integer mId;

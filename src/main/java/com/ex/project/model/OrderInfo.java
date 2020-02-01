@@ -36,7 +36,10 @@ public class OrderInfo {
     private String getUPhone;
 
     private String getUDdress;
-
+    /**
+     * @Author lx
+     * @Description 用户买家退货原因
+     **/
     private String uRecause;
 
     private String sReseason;

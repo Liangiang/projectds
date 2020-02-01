@@ -19,13 +19,14 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <!--该用户的所有购物车信息-->
-    <select id="selectByUId" resultType="com.ex.project.model.ShoppingCarInfoVO" parameterType="java.lang.Integer">
+    <select id="selectByUId" resultType="com.ex.project.model.ShoppingCarInfoVO">
         select
         a.id as id, a.g_id as gId, a.purchase_num as purchaseNum,  b.g_name as gName, b.g_stock as gStock, b.price, b.type_name as typeName, b.img_url as imgUrl
         from sh_shoppingcarinfo a,
         g_goodsinfo b
-        where a.g_id=b.g_id
-       and  u_id = #{uId}
+        where
+        a.u_id = #{uId,jdbcType=INTEGER}
+        and a.g_id=b.g_id
     </select>
     <!--判断是否已经加过购物车-->
     <select id="selectByGId" parameterType="com.ex.project.model.ShoppingCarInfo" resultMap="BaseResultMap">
@@ -33,6 +34,7 @@
         <include refid="Base_Column_List"/>
         from sh_shoppingcarinfo
         where g_id = #{gId}
+        and u_id =#{uId}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sh_shoppingcarinfo
@@ -42,11 +44,12 @@
     insert into sh_shoppingcarinfo (id, g_id, u_id,
       purchase_num, insert_time)
     values (#{id,jdbcType=INTEGER}, #{gId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, 
-      #{purchaseNum,jdbcType=INTEGER}, #{insertTime,jdbcType=TIMESTAMP})
+      #{purchaseNum,jdbcType=INTEGER}, now())
   </insert>
     <insert id="insertSelective" parameterType="com.ex.project.model.ShoppingCarInfo">
         insert into sh_shoppingcarinfo
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            insert_time,
             <if test="id != null">
                 id,
             </if>
@@ -59,11 +62,11 @@
             <if test="purchaseNum != null">
                 purchase_num,
             </if>
-            <if test="insertTime != null">
-                insert_time,
-            </if>
+
+
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            now(),
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
@@ -76,15 +79,13 @@
             <if test="purchaseNum != null">
                 #{purchaseNum,jdbcType=INTEGER},
             </if>
-            <if test="insertTime != null">
-                #{insertTime,jdbcType=TIMESTAMP},
-            </if>
+
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.ex.project.model.ShoppingCarInfo">
         update sh_shoppingcarinfo
         <set>
-
+            insert_time = now(),
             <if test="purchaseNum != null">
                 purchase_num = #{purchaseNum,jdbcType=INTEGER},
             </if>
