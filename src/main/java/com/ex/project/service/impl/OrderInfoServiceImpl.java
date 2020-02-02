@@ -42,25 +42,34 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int up_order(OrderInfo orderInfo) {
         int flag = CodeConsts.ZT_SB;
         int returnData = CodeConsts.ZT_SB;
-        switch (orderInfo.getoStatus()) {
-            //已付款
-            case CodeConsts.DDZT_YFK:
-                flag = ChangeMoney(orderInfo.getoId(), orderInfo.getoStatus());
-                break;
-            //6同意退货
-            case CodeConsts.DDZT_TYTH:
-                flag = ChangeMoney(orderInfo.getoId(), orderInfo.getoStatus());
-                break;
-            default:
-                flag = 1;
+        try {
+            switch (orderInfo.getoStatus()) {
+                //已付款
+                case CodeConsts.DDZT_YFK:
+                    flag = ChangeMoney(orderInfo.getoId(), orderInfo.getoStatus());
+                    break;
+                //6同意退货
+                case CodeConsts.DDZT_TYTH:
+                    flag = ChangeMoney(orderInfo.getoId(), orderInfo.getoStatus());
+                    break;
+                default:
+                    flag = CodeConsts.ZT_CG;
+                    break;
+            }
+            if (flag == CodeConsts.ZT_CG) {
+                returnData = orderInfoMapper.updateByPrimaryKeySelective(orderInfo);
+            }
+            return returnData;
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return CodeConsts.ZT_SB;
+
         }
-        if (flag == CodeConsts.ZT_CG) {
-            returnData = orderInfoMapper.updateByPrimaryKeySelective(orderInfo);
-        }
-        return returnData;
+
     }
 
     @Override
@@ -112,7 +121,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
             return upUser;
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            return 0;
+            return CodeConsts.ZT_SB;
 
         }
     }
