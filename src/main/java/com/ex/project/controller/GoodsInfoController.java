@@ -3,7 +3,9 @@ package com.ex.project.controller;
 import com.ex.project.model.GoodsInfo;
 import com.ex.project.service.GoodsInfoService;
 import com.github.pagehelper.PageInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,8 @@ public class GoodsInfoController {
 
     @Autowired
     private GoodsInfoService goodsInfoServiceImpl;
+    @Value("${save.path}")
+    private String filePath;
 
     /**
      * @return com.github.pagehelper.PageInfo<com.ex.project.model.GoodsInfo>
@@ -66,7 +70,7 @@ public class GoodsInfoController {
             // 后缀名
             String suffixName = fileName.substring(fileName.lastIndexOf("."));
             // 上传后的路径
-            String filePath = "E:/Ahtah/CompanySvn/bishe/bisheUI/static/img/goodsImg/";
+            //String filePath = "E:/Ahtah/CompanySvn/bishe/bisheUI/static/img/goodsImg/";
             // 新文件名
             fileName = UUID.randomUUID() + suffixName;
             File dest = new File(filePath + fileName);

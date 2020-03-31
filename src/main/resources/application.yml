@@ -27,3 +27,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.ex.project.model
+
+save:
+  path: E:/Ahtah/CompanySvn/bishe/bisheUI/static/img/goodsImg/
